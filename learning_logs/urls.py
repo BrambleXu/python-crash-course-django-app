@@ -13,11 +13,21 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path, include
-from django.contrib import admin
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('learning_logs.urls')), #1
+"""定义learning_logs的URL模式""" #1
+
+from django.urls import path #2
+from . import views #3
+
+app_name = 'learning_logs'
+
+urlpatterns = [ #4
+    # 主页
+    path('', views.index, name='index'), #5
+
+    # 显示所有主题
+    path('topics/', views.topics, name='topics'),
+
+    # 特定主题的详细页面
+    path('topics/<int:topic_id>/', views.topic, name='topic')
 ]
-
