@@ -50,6 +50,7 @@ def new_topic(request):
 def new_entry(request, topic_id):
     """在特定的主题中添加新条目"""
     topic = Topic.objects.get(id=topic_id)
+    check_topic_owner(request.user, new_entry.topic.owner)
 
     if request.method != 'POST':
         form = EntryForm()
@@ -86,7 +87,7 @@ def edit_entry(request, entry_id):
     context = {'entry': entry, 'topic': topic, 'form': form}
     return render(request, 'learning_logs/edit_entry.html', context)
 
-def check_topic_owner(owner, current_user):
+def check_topic_owner(current_user, owner):
     """Check whether current user is topic owner or not"""
     if owner != current_user:
         raise Http404
