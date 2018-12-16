@@ -50,7 +50,7 @@ def new_topic(request):
 def new_entry(request, topic_id):
     """在特定的主题中添加新条目"""
     topic = Topic.objects.get(id=topic_id)
-    check_topic_owner(request.user, new_entry.topic.owner)
+    check_topic_owner(request.user, topic.owner)
 
     if request.method != 'POST':
         form = EntryForm()
