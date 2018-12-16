@@ -23,7 +23,7 @@
           </h3>
         </div>
         <div class="panel-body">
-          {{ entry.text|linebreaks }}
+          {{ entry.text|linebreaks|truncatewords:50 }}
         </div>
       </div> <!--panel -->
     {% empty %}
