@@ -1,6 +1,6 @@
 This is an implementation of Django Web App from *Python Crash Course* chapter 18~20.
 
-All code update with Django 2.1
+Update with Django 2.1 and Bootstrap4
 
 `Index.html`
 
