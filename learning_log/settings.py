@@ -25,7 +25,7 @@ SECRET_KEY = '7=&+$xq!w_=lc4r3m2u^3$^1chw*5xrh+5ubtm8!&7_7&4*170'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third Party App
-    'bootstrap3',
+    'bootstrap4',
 
     # My App
     'learning_logs',

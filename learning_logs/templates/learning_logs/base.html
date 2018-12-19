@@ -1,4 +1,4 @@
-{% load bootstrap3 %}
+{% load bootstrap4 %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,48 +15,52 @@
   </head>
   <body>
     <!--Static nabvar-->
-    <nav class="navbar navbar-default navbar-static-top">
-      <div class="container">
+    <div class="container">
 
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed"
-                  data-toggle="collapse" data-target="#navbar"
-                  aria-expanded="false" aria-controls="navbar">
-          </button>
-          <a class="navbar-brand" href="{% url 'learning_logs:index' %}">
-            Learning Log</a>
-        </div>
-
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="{% url 'learning_logs:topics' %}">Topics</a></li>
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'learning_logs:index' %}">Learning Log</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'learning_logs:topics' %}">Topics</a>
+            </li>
           </ul>
 
-          <ul class="nav navbar-nav navbar-right">
+          <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
-              <li><a>Hello, {{ user.username }}.</a></li>
-              <li><a href="{% url 'users:logout' %}">log out</a></li>
+              <li class="nav-item active">
+                <a class="nav-link">Hello, {{ user.username }}.</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'users:logout' %}">log out</a>
+              </li>
             {% else %}
-              <li><a href="{% url 'users:register' %}">register</a></li>
-              <li><a href="{% url 'users:login' %}">log in</a></li>
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'users:register' %}">register</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'users:login' %}">log in</a>
+              </li>
             {% endif %}
           </ul>
         </div> <!--/.nav-collapse-->
+      </nav>
 
-      </div>
-    </nav>
+    </div>
 
     <div class="container">
 
-      <div class="page-header">
+      <div class="pb-2 mt-4 mb-2 border-bottom">
         {% block header %}{% endblock header %}
       </div>
-      <div>
+      <div class="pb-3 mt-4 mb-2 border-bottom">
         {% block content %}{% endblock content %}
       </div>
 
     </div> <!-- /container -->
-
 
   </body>
 
