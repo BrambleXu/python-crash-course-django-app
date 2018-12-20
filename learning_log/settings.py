@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import dj_database_url
+# import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -130,17 +132,16 @@ STATIC_URL = '/static/'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/users/login/'
 
-# django-bootstrap3的设置
-BOOTSTRAP3 = {
-    'include_jquery': True,
-}
+# Activate Django-Heroku.
+# django_heroku.settings(locals())
 
 # Heroku settings
 cwd = os.getcwd()
+print("--- CWD ---\n", cwd, "\n---\n")
 if cwd == '/app' or cwd[:4] == '/tmp':
-    import dj_database_url
+
     DATABASES = {
-        'default': dj_database_url.config(defualt='postgres://localhost')
+        'default': dj_database_url.config(default='postgres://localhost')
     }
 
     # Honor the 'X-Forwarded-Proto' header for request.is_secure().
@@ -148,7 +149,7 @@ if cwd == '/app' or cwd[:4] == '/tmp':
 
     # Only allow heroku to host the project.
     ALLOWED_HOSTS = ['*']
-    DEBUG = False
+    DEBUG = True
 
     # Static asset configuration
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -157,3 +158,4 @@ if cwd == '/app' or cwd[:4] == '/tmp':
         os.path.join(BASE_DIR, 'static'),
     )
 
+    STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
